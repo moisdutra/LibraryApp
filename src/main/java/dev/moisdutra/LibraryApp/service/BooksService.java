@@ -36,9 +36,12 @@ public class BooksService {
     public BookModel updateBook(Long id, BookModel bookModel) {
         BookModel book = listBookById(id);
         if (book != null) {
-            bookModel.setId(id);
-            return booksRepository.save(bookModel);
-        } else {
+            if(bookModel.getTitle() != null) book.setTitle(bookModel.getTitle());
+            if(bookModel.getAuthor() != null) book.setAuthor(bookModel.getAuthor());
+            if(bookModel.getCategory() != null) book.setCategory(bookModel.getCategory());
+
+            return booksRepository.save(book);
+        }  else {
             return null;
         }
     }
