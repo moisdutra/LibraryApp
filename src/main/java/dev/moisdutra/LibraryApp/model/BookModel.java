@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "tb_books")
 @AllArgsConstructor
@@ -28,4 +31,6 @@ public class BookModel {
     @Column(name = "category")
     private String category;
 
+    @OneToMany(mappedBy = "book")
+    private List<ReserveModel> reserves = new ArrayList<>();
 }
